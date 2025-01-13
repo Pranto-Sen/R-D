@@ -55,12 +55,12 @@
   </p>
 
   ![image](https://github.com/user-attachments/assets/913e53b0-786b-49eb-b54c-8da961b9a1ff)
-  <p>
+ 
     Let's use a real-life analogy: A car that requires an engine to run.
-  1.	The Car depends on an Engine to function.
-  2.	Instead of the car building its own engine, we inject the engine (as a dependency).
-  3.	This way, we can replace or modify the engine easily without changing the car's code.
-  </p>
+    - The Car depends on an Engine to function.
+    - Instead of the car building its own engine, we inject the engine (as a dependency).
+    - This way, we can replace or modify the engine easily without changing the car's code.
+ 
 
 
 </details>
