@@ -37,8 +37,11 @@
 - Dependency Injection (DI) is a design pattern in C# and other programming languages that promotes loose coupling between classes by providing dependencies from an external source rather than creating them inside a class. DI is commonly used in frameworks like ASP.NET Core to improve modularity, testability, and maintainability.
   
 - The lifecycle of dependency injection (DI) in C# (especially in ASP.NET Core) refers to the way the Dependency Injection Container (DI container) manages the creation, lifespan, and destruction of dependencies.
+  - Transient- New service created every time requested
+  - Scoped - New service once per request
+  - Singleton - New Service once per application lifetime
+   
  
-  ![image](https://github.com/user-attachments/assets/913e53b0-786b-49eb-b54c-8da961b9a1ff)
  
 Let's use a real-life analogy: A car that requires an engine to run.
   - The Car depends on an Engine to function.
@@ -52,9 +55,34 @@ Let's use a real-life analogy: A car that requires an engine to run.
   Executes raw SQL queries and maps the results to objects with minimal overhead.
   Faster than Entity Framework because it doesn’t have features like change tracking or complex object state management.
   Suitable for high-performance applications where speed is critical.
+## 5. Sql Basic
+ - CREATE TABLE
+   
+   ```sql
+   CREATE TABLE Products (
+    ProductID INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Quantity INT NOT NULL
+    );
 
+   ```
+    - ProductID: Primary key with auto-increment.
+    - Name: Name of the product.
+    - Price: Product price.
+    - Quantity: Quantity available.
+  
+  - Insert Data
+   
+     ```sql
+      INSERT INTO Products (Name, Price, Quantity)
+      VALUES ('Laptop', 1200.00, 10);
+      
+      INSERT INTO Products (Name, Price, Quantity)
+      VALUES ('Phone', 699.99, 25);
+     ```
 
-## 5. Stored Procedure?
+## 6. Stored Procedure?
 
   - A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
   - So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
@@ -76,7 +104,7 @@ EXEC GetEmployeesByDept @DeptID = 1;
 
 ```
 
-## 6. CTE
+## 7. CTE
   - A Common Table Expression (CTE) can make it easier to manage and write complex queries by making them more readable and simple, like database views and derived tables. We can reuse or rewrite the query by breaking down the complex queries into simple blocks.
 
   ```sql
