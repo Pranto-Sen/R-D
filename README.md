@@ -274,3 +274,67 @@ function App() {
 - Name custom Hooks starting with "use" (e.g., useFetch, useToggle).
 - Combine useState and useEffect to encapsulate reusable logic.
 - By mastering these Hooks, you'll be able to build functional, efficient, and reusable components. Let me know if you'd like further clarification or advanced examples!
+
+## 10. SPA
+ - Single-page applications (SPAs) dynamically update the web page as the user interacts with it, without requiring a full page reload. Routing in SPAs enables users to navigate between views or pages while keeping the app loaded in the browser.
+ - Basic Routing Example
+   ```jsx
+    import React from "react";
+    import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+    
+    function Home() {
+      return <h2>Home Page</h2>;
+    }
+    
+    function About() {
+      return <h2>About Page</h2>;
+    }
+    
+    function Contact() {
+      return <h2>Contact Page</h2>;
+    }
+    
+    function App() {
+      return (
+        <Router>
+          <nav>
+            <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Router>
+      );
+    }
+    
+    export default App;
+
+   ```
+- Dynamic Routing
+  ```jsx
+    import React from "react";
+    import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+    
+    function User() {
+      const { userId } = useParams(); // Extracts userId from the URL
+      return <h2>User Profile: {userId}</h2>;
+    }
+    
+    function App() {
+      return (
+        <Router>
+          <Routes>
+            <Route path="/user/:userId" element={<User />} />
+          </Routes>
+        </Router>
+      );
+    }
+    
+    export default App;
+
+  ```
+  Explanation:
+   - The path /user/:userId defines a route with a dynamic segment :userId.
+   - The useParams hook retrieves the userId from the URL.
