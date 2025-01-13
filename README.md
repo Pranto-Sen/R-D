@@ -338,3 +338,108 @@ function App() {
   Explanation:
    - The path /user/:userId defines a route with a dynamic segment :userId.
    - The useParams hook retrieves the userId from the URL.
+ 
+## 11. Axios
+  - Axios is a popular library used for making HTTP requests in JavaScript applications. It provides a promise-based API that is simple to use and works well with asynchronous operations. Axios is often preferred for its ease of use and additional features like interceptors, automatic JSON parsing, and request cancellation
+  - Basic Axios Requests
+    - GET Request
+    - Fetch data from an API endpoint.
+      ```jsx
+      import React, { useEffect, useState } from "react";
+      import axios from "axios";
+      
+      function App() {
+        const [data, setData] = useState([]);
+        const [loading, setLoading] = useState(true);
+      
+        useEffect(() => {
+          axios
+            .get("https://jsonplaceholder.typicode.com/posts")
+            .then((response) => {
+              setData(response.data); // Set the fetched data
+              setLoading(false); // Turn off loading
+            })
+            .catch((error) => {
+              console.error("Error fetching data:", error);
+              setLoading(false);
+            });
+        }, []);
+      
+        if (loading) {
+          return <div>Loading...</div>;
+        }
+      
+        return (
+          <div>
+            <h1>Posts</h1>
+            <ul>
+              {data.map((post) => (
+                <li key={post.id}>{post.title}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+      
+      export default App;
+
+      ```
+  - Explanation:
+    - axios.get(url): Makes a GET request to the specified URL.
+    - Handles the promise with .then() for success and .catch() for errors.
+    - Stores the fetched data in the data state and handles loading state with loading.
+- POST Request
+- Send data to an API.
+    ```jsx
+    import React, { useState } from "react";
+    import axios from "axios";
+    
+    function App() {
+      const [title, setTitle] = useState("");
+      const [body, setBody] = useState("");
+      const [response, setResponse] = useState(null);
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
+          .post("https://jsonplaceholder.typicode.com/posts", {
+            title,
+            body,
+            userId: 1,
+          })
+          .then((res) => setResponse(res.data))
+          .catch((error) => console.error("Error posting data:", error));
+      };
+    
+      return (
+        <div>
+          <h1>Create Post</h1>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Title:</label>
+              <input value={title} onChange={(e) => setTitle(e.target.value)} />
+            </div>
+            <div>
+              <label>Body:</label>
+              <textarea value={body} onChange={(e) => setBody(e.target.value)} />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+          {response && (
+            <div>
+              <h2>Response</h2>
+              <p>ID: {response.id}</p>
+              <p>Title: {response.title}</p>
+              <p>Body: {response.body}</p>
+            </div>
+          )}
+        </div>
+      );
+    }
+    
+    export default App;
+
+    ```
+Explanation:
+- axios.post(url, data): Sends a POST request with data in the request body.
+- The response from the API is displayed after submission.
